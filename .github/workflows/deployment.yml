@@ -4,7 +4,7 @@ on: push
 
 jobs:
   lint-job:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download code from github repo
         uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
 
   test-job:
     needs: lint-job
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download code from repo
         uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
 
   deploy-job:
     needs: test-job
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download code from repo
         uses: actions/checkout@v4
