@@ -1,6 +1,6 @@
 name: Issues Workflow
 
-# issues  -> When new issue is opened in github repo
+# issues  -> Fire there is any change (open/edit/close) issue in git repo
 on: issues
 
 jobs:
