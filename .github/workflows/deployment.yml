@@ -1,0 +1,36 @@
+name: Deployment Workflow
+
+on: push
+
+jobs:
+  lint-job:
+    run-on: ubuntu-latest
+    steps:
+      - name: Download code from github repo
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Checking for eslint errors
+        run: npm run lint
+
+  test-job:
+    needs: lint-job
+    run-on: ubuntu-latest
+    steps:
+      - name: Download code from repo
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Running vitests
+        run: npm run test
+
+  deploy-job:
+    needs: test-job
+    run-on: ubuntu-latest
+    steps:
+      - name: Download code from repo
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Deploying new version
+        run: echo "Deploying..."
